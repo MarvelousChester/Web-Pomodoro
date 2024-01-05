@@ -1,12 +1,17 @@
+/*
+    Purpose: Allow user to set the time for the pomodoro timer passed in callback function
+*/
 import { useState } from "react";
+
 interface Props {
   minuteInit: number;
   secondInit: number;
+  onTimeChange: (time: number) => void;
 }
 
-const SettingTimer = ({ minuteInit, secondInit }: Props) => {
+const SettingTimer = ({ minuteInit, secondInit, onTimeChange }: Props) => {
   const [minute, setMinute] = useState(minuteInit);
-  const [second, setSecond] = useState(secondInit);
+  let second = secondInit;
 
   const handleDecrementClick = () => {
     if (minute <= 0) {
@@ -14,6 +19,8 @@ const SettingTimer = ({ minuteInit, secondInit }: Props) => {
     } else {
       setMinute(minute - 1);
     }
+    const nextMinute = minute - 1;
+    onTimeChange(nextMinute);
   };
   const handleIncrementClick = () => {
     if (minute >= 60) {
@@ -21,10 +28,13 @@ const SettingTimer = ({ minuteInit, secondInit }: Props) => {
     } else {
       setMinute(minute + 1);
     }
+    const nextMinute = minute + 1;
+    onTimeChange(nextMinute);
   };
+
   return (
     <div>
-      <div contentEditable="true">
+      <div>
         {minute}:{second}
       </div>
       <button onClick={handleIncrementClick}>↑</button>
