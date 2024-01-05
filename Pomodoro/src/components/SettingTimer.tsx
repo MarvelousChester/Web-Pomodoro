@@ -9,10 +9,17 @@ const SettingTimer = ({ minuteInit, secondInit }: Props) => {
   const [second, setSecond] = useState(secondInit);
 
   const handleDecrementClick = () => {
-    if (minute === 0) {
+    if (minute <= 0) {
       setMinute(60);
     } else {
       setMinute(minute - 1);
+    }
+  };
+  const handleIncrementClick = () => {
+    if (minute >= 60) {
+      setMinute(0);
+    } else {
+      setMinute(minute + 1);
     }
   };
   return (
@@ -20,7 +27,7 @@ const SettingTimer = ({ minuteInit, secondInit }: Props) => {
       <div contentEditable="true">
         {minute}:{second}
       </div>
-      <button>↑</button>
+      <button onClick={handleIncrementClick}>↑</button>
       <button onClick={handleDecrementClick}>↓</button>
     </div>
   );
