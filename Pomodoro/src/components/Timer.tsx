@@ -1,9 +1,37 @@
+import { useEffect, useState } from "react";
+
 interface Props {
   minute: number;
 }
 
 const Timer = ({ minute }: Props) => {
-  return <div className="text-center">{minute + ":"}</div>;
+  // Add CountDown Timer
+
+  const [timerMinute, setTimerMinute] = useState(minute);
+  const [timerSecond, setTimerSecond] = useState(0);
+
+  const decrementTimer = () => {
+    if (timerSecond <= 0) {
+      setTimerMinute(timerMinute - 1);
+      setTimerSecond(59);
+    } else {
+      setTimerSecond(timerSecond - 1);
+    }
+  };
+
+  useEffect(() => {
+    const countdown = setInterval(decrementTimer, 1000);
+
+    return () => clearInterval(countdown);
+  }, [timerSecond]);
+
+  // Interval that calls Decrement timer every 1 second
+
+  return (
+    <div className="text-center">
+      {timerMinute + ":" + (timerSecond <= 0 ? timerSecond + "0" : timerSecond)}
+    </div>
+  );
 };
 
 export default Timer;
