@@ -13,17 +13,21 @@ function App() {
 
   const setWorkTimer = (time: number) => {
     setWorkTimerHook(time);
-    console.log("time set");
   };
+
+  const [workTimerVisibility, setWorkTimerVisibility] = useState(false);
 
   return (
     <>
+      <div>{workTimerVisibility && <Timer minute={workTimer}></Timer>}</div>
       <SettingTimer
         minuteInit={25}
         secondInit={0}
         onTimeChange={setWorkTimer}
       ></SettingTimer>
-      <Timer minute={workTimer}></Timer>
+      <button onClick={() => setWorkTimerVisibility(true)}>
+        Start Session
+      </button>
     </>
   );
 }

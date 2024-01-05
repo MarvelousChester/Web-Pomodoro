@@ -3,7 +3,7 @@ interface Props {
 }
 
 const Timer = ({ minute }: Props) => {
-  return <div className="text-center">{minute + ":" + 0}</div>;
+  return <div className="text-center">{minute + ":"}</div>;
 };
 
 export default Timer;
