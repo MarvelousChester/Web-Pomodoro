@@ -4,7 +4,7 @@ interface Props {
 }
 
 const Timer = ({ minute, seconds }: Props) => {
-  return <div className="text-center fs-1">{minute + ":" + seconds}</div>;
+  return <div className="text-center">{minute + ":" + seconds}</div>;
 };
 
 export default Timer;
