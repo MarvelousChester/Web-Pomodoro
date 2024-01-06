@@ -17,9 +17,14 @@ const Timer = ({ minute }: Props) => {
     } else {
       setTimerSecond(timerSecond - 1);
     }
+    console.log("donw");
   };
 
   useEffect(() => {
+    // counts down and then stops the timer
+    if (timerSecond == 0 && timerMinute == 0) {
+      return;
+    }
     const countdown = setInterval(decrementTimer, 1000);
 
     return () => clearInterval(countdown);
