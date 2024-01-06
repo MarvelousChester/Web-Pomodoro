@@ -8,7 +8,7 @@ const Timer = ({ minute }: Props) => {
   // Add CountDown Timer
 
   const [timerMinute, setTimerMinute] = useState(minute);
-  const [timerSecond, setTimerSecond] = useState(0);
+  const [timerSecond, setTimerSecond] = useState(10);
 
   const decrementTimer = () => {
     if (timerSecond <= 0) {
@@ -34,7 +34,7 @@ const Timer = ({ minute }: Props) => {
 
   return (
     <div className="text-center">
-      {timerMinute + ":" + (timerSecond <= 0 ? timerSecond + "0" : timerSecond)}
+      {timerMinute + ":" + (timerSecond < 10 ? "0" + timerSecond : timerSecond)}
     </div>
   );
 };

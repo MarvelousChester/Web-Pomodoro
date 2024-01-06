@@ -35,7 +35,7 @@ const SettingTimer = ({ minuteInit, secondInit, onTimeChange }: Props) => {
   return (
     <div>
       <div>
-        {minute}:{second}
+        {minute}:{second < 10 ? "0" + second : second}
       </div>
       <button onClick={handleIncrementClick}>↑</button>
       <button onClick={handleDecrementClick}>↓</button>
