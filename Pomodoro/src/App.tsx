@@ -21,6 +21,7 @@ function App() {
     <>
       <div>{workTimerVisibility && <Timer minute={workTimer}></Timer>}</div>
       <SettingTimer
+        timerNameInit="Work Timer"
         minuteInit={25}
         secondInit={0}
         onTimeChange={setWorkTimer}

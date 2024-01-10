@@ -4,12 +4,18 @@
 import { useState } from "react";
 
 interface Props {
+  timerNameInit: string;
   minuteInit: number;
   secondInit: number;
   onTimeChange: (time: number) => void;
 }
 
-const SettingTimer = ({ minuteInit, secondInit, onTimeChange }: Props) => {
+const SettingTimer = ({
+  timerNameInit,
+  minuteInit,
+  secondInit,
+  onTimeChange,
+}: Props) => {
   const [minute, setMinute] = useState(minuteInit);
   let second = secondInit;
 
@@ -34,6 +40,7 @@ const SettingTimer = ({ minuteInit, secondInit, onTimeChange }: Props) => {
 
   return (
     <div>
+      <h1>{timerNameInit}</h1>
       <div>
         {minute}:{second < 10 ? "0" + second : second}
       </div>
