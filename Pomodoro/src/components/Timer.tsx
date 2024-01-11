@@ -6,9 +6,14 @@ interface Props {
 
 const Timer = ({ minute }: Props) => {
   // Add CountDown Timer
-
-  const [timerMinute, setTimerMinute] = useState(minute);
-  const [timerSecond, setTimerSecond] = useState(10);
+  const [timerMinute, setTimerMinute] = useState(0);
+  const [timerSecond, setTimerSecond] = useState(5);
+  // SergeQuadrado
+  const [alarmSound] = useState(
+    new Audio(
+      "http://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/intromusic.ogg"
+    )
+  );
 
   const decrementTimer = () => {
     if (timerSecond <= 0) {
@@ -17,18 +22,20 @@ const Timer = ({ minute }: Props) => {
     } else {
       setTimerSecond(timerSecond - 1);
     }
-    console.log("donw");
   };
 
   useEffect(() => {
     // counts down and then stops the timer
     if (timerSecond == 0 && timerMinute == 0) {
+      alarmSound.play();
       return;
     }
     const countdown = setInterval(decrementTimer, 1000);
 
-    return () => clearInterval(countdown);
-  }, [timerSecond]);
+    return () => {
+      clearInterval(countdown);
+    };
+  }, [timerSecond]); // everytime timerSecond changes, it will run
 
   // Interval that calls Decrement timer every 1 second
 
