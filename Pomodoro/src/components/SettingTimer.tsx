@@ -20,7 +20,7 @@ const SettingTimer = ({
   let second = secondInit;
 
   const handleDecrementClick = () => {
-    if (minute <= 0) {
+    if (minute <= 1) {
       setMinute(60);
     } else {
       setMinute(minute - 1);
@@ -30,7 +30,7 @@ const SettingTimer = ({
   };
   const handleIncrementClick = () => {
     if (minute >= 60) {
-      setMinute(0);
+      setMinute(1);
     } else {
       setMinute(minute + 1);
     }
